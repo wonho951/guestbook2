@@ -42,7 +42,7 @@
 			<td><%= guestbookList.get(i).getNo() %></td>
 			<td><%= guestbookList.get(i).getName() %></td>
 			<td><%= guestbookList.get(i).getRegDate() %></td>	
-			<td><a href="/guestbook2/gbc?action=dform&no<%= guestbookList.get(i).getNo()%>">삭제</a></td>
+			<td><a href="/guestbook2/gbc?action=dform&no=<%= guestbookList.get(i).getNo()%>">삭제</a></td>
 		</tr>
 	
 		<tr>

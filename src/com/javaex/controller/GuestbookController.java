@@ -72,12 +72,9 @@ public class GuestbookController extends HttpServlet {
 			
 			guestDao.guestDelete(guestbookVo);
 			
-			request.setAttribute(password, guestbookVo);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
-			rd.forward(request, response);
-			
+		
 			response.sendRedirect("/guestbook2/gbc?action=list");
+		
 			
 		}
 	}
