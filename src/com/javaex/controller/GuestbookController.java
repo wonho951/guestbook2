@@ -61,7 +61,15 @@ public class GuestbookController extends HttpServlet {
 			rd.forward(request, response);
 			
 		} else if ("delete".equals(action)) {
+			System.out.println("삭제");
 			
+			GuestbookDao guestDao = new GuestbookDao();
+			
+			int guestNo = Integer.parseInt(request.getParameter("no"));
+			
+			guestDao.guestDelete(guestNo);
+			
+			response.sendRedirect("/guestbook2/gbc?action=list");
 			
 		}
 	}

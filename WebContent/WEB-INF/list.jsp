@@ -42,7 +42,7 @@
 			<td><%= guestbookList.get(i).getNo() %></td>
 			<td><%= guestbookList.get(i).getName() %></td>
 			<td><%= guestbookList.get(i).getRegDate() %></td>	
-			<td><a href="/guestbook2/gbc?action=deleteForm&no<%= guestbookList.get(i).getNo()%>">삭제</a></td>	<!-- 비밀번호 유출시킬 문제가 아닌이상 no만 해준다. -->
+			<td><a href="/guestbook2/gbc?action=deleteForm&no<%= guestbookList.get(i).getNo()%>">삭제</a></td>
 		</tr>
 	
 		<tr>
