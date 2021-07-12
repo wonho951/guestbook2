@@ -54,6 +54,15 @@ public class GuestbookController extends HttpServlet {
 			
 			response.sendRedirect("/guestbook2/gbc?action=list");	
 			
+		} else if ("dform".equals(action)) {
+			System.out.println("삭제폼");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");
+			rd.forward(request, response);
+			
+		} else if ("delete".equals(action)) {
+			
+			
 		}
 	}
 
