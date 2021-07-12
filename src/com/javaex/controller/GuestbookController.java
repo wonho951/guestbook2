@@ -65,9 +65,17 @@ public class GuestbookController extends HttpServlet {
 			
 			GuestbookDao guestDao = new GuestbookDao();
 			
-			int guestNo = Integer.parseInt(request.getParameter("no"));
+			int no = Integer.parseInt(request.getParameter("no"));
+			String password = request.getParameter("password");
 			
-			guestDao.guestDelete(guestNo);
+			GuestbookVo guestbookVo = new GuestbookVo(no, password);
+			
+			guestDao.guestDelete(guestbookVo);
+			
+			request.setAttribute(password, guestbookVo);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
+			rd.forward(request, response);
 			
 			response.sendRedirect("/guestbook2/gbc?action=list");
 			

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% String no = request.getParameter("no");	//비밀번호가 숫자만 쓰라는 법은 없으니까 string줌 %>
+<% String no = request.getParameter("no");%>
   
 <!DOCTYPE html>
 <html>
