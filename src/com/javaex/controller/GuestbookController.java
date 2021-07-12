@@ -20,6 +20,8 @@ public class GuestbookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("컨트롤러");
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		//파라미터의 action 값을 읽어온다.
 		String action = request.getParameter("action");
 		System.out.println(action);
@@ -32,7 +34,6 @@ public class GuestbookController extends HttpServlet {
 			
 			System.out.println("controller-------------------------");
 			System.out.println(guestbookList);
-			
 			
 			request.setAttribute("gList", guestbookList);
 			
@@ -62,6 +63,7 @@ public class GuestbookController extends HttpServlet {
 			
 		} else if ("delete".equals(action)) {
 			System.out.println("삭제");
+			
 			
 			GuestbookDao guestDao = new GuestbookDao();
 			
