@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.GuestbookDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.GuestbookVo;
 
 
@@ -22,6 +23,9 @@ public class GuestbookController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		GuestbookDao guestDao = new GuestbookDao();
+		
+		
 		//파라미터의 action 값을 읽어온다.
 		String action = request.getParameter("action");
 		System.out.println(action);
@@ -29,21 +33,27 @@ public class GuestbookController extends HttpServlet {
 		if ("list".equals(action)) {
 			System.out.println("[리스트]");
 			
-			GuestbookDao guestbookDao = new GuestbookDao(); 
-			List<GuestbookVo> guestbookList = guestbookDao.getguestList();
+			List<GuestbookVo> guestbookList = guestDao.getguestList();
 			
 			System.out.println("controller-------------------------");
 			System.out.println(guestbookList);
 			
 			request.setAttribute("gList", guestbookList);
 			
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(request, response);	
+			
+			↓변화		*/
+						
+			
+			WebUtil.forword(request, response, "/WEB-INF/list.jsp");
+			
+			
 			
 		} else if ("add".equals(action)) {
 			System.out.println("등록");
 			
-			GuestbookDao guestDao = new GuestbookDao();
 			
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
@@ -53,19 +63,22 @@ public class GuestbookController extends HttpServlet {
 			
 			guestDao.guestInsert(guestVo);
 			
-			response.sendRedirect("/guestbook2/gbc?action=list");	
+			//response.sendRedirect("/guestbook2/gbc?action=list");	
+			//	↓변화
+			
+			WebUtil.redirect(request, response, "/guestbook2/gbc?action=list");
 			
 		} else if ("dform".equals(action)) {
 			System.out.println("삭제폼");
 			
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");
 			rd.forward(request, response);
+			 ↓변화	*/
+			WebUtil.forword(request, response, "/WEB-INF/deleteForm.jsp");
 			
 		} else if ("delete".equals(action)) {
 			System.out.println("삭제");
-			
-			
-			GuestbookDao guestDao = new GuestbookDao();
 			
 			int no = Integer.parseInt(request.getParameter("no"));
 			String password = request.getParameter("password");
@@ -75,8 +88,9 @@ public class GuestbookController extends HttpServlet {
 			guestDao.guestDelete(guestbookVo);
 			
 		
-			response.sendRedirect("/guestbook2/gbc?action=list");
-		
+			//response.sendRedirect("/guestbook2/gbc?action=list");
+			
+			WebUtil.redirect(request, response, "/guestbook2/gbc?action=list");
 			
 		}
 	}
