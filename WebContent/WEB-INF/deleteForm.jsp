@@ -13,7 +13,7 @@
 	
 	<h1>비밀번호 확인</h1>
 
-	<form action="/guestbook2/gbc" method="get">
+	<form action="/guestbook2/gbc" method="post">
 		비밀번호:<input type="password" name="password"> 		
 		<input type="hidden" name = "no" value="<%=no  %>">
 		<input type="hidden" name="action" value="delete">
